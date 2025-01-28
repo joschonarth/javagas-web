@@ -7,7 +7,13 @@
     <title>Cadastro do Candidato</title>
 </head>
 <body class="bg-gray-900 h-screen items-center flex justify-center">
-    <form id="submitForm" th:action="@{/candidate/signIn}" method="post" class="flex gap-24">
+    <form 
+        id="submitForm" 
+        th:action="@{/candidate/create}" 
+        method="post" 
+        class="flex gap-24" 
+        th:object="${candidate}"
+    >
         <div class="space-y-8 bg-zinc-950 rounded-md p-10">
             <p class="text-white">Candidato, crie o seu cadastro gratuitamente</p>
             <input 
@@ -15,18 +21,21 @@
                 name="username" 
                 class="bg-gray-50 text-gray-900 text-xd rounded w-96 block p-3 focus:outline-none focus:ring-green-600 focus:ring-2"
                 placeholder="Digite seu usuário"
+                th:field="*{username}"
             >
             <input 
                 type="text" 
                 name="name" 
                 class="bg-gray-50 text-gray-900 text-xd rounded w-96 block p-3 focus:outline-none focus:ring-green-600 focus:ring-2"
                 placeholder="Digite seu nome"
+                th:field="*{name}"
             >
             <input 
                 type="email" 
                 name="email" 
                 class="bg-gray-50 text-gray-900 text-xd rounded w-96 block p-3 focus:outline-none focus:ring-green-600 focus:ring-2"
                 placeholder="E-mail"
+                th:field="*{email}"
             >
             <input 
                 type="password" 
@@ -34,6 +43,7 @@
                 name="password" 
                 class="bg-gray-50 text-gray-900 text-xd rounded w-96 block p-3 focus:outline-none focus:ring-green-600 focus:ring-2"
                 placeholder="Senha"
+                th:field="*{password}"
             >
             <input 
                 type="password"
@@ -46,6 +56,7 @@
                 name="description" 
                 class="bg-gray-50 text-gray-900 text-xd rounded w-96 block p-3 focus:outline-none focus:ring-green-600 focus:ring-2"
                 placeholder="Digite uma breve descrição sobre você"
+                th:field="*{description}"
             ></textarea>
 
             <p id="password_error" class="text-red-400" hidden>As senhas são diferentes</p>
