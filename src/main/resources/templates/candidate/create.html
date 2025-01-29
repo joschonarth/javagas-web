@@ -59,6 +59,7 @@
                 th:field="*{description}"
             ></textarea>
 
+            <p class="text-red-400" th:if="${error_message}" th:text="${error_message}"></p>
             <p id="password_error" class="text-red-400" hidden>As senhas são diferentes</p>
             
             <button class="bg-green-900 w-96 p-4 rounded text-white hover:bg-green-700">Cadastre-se</button>
