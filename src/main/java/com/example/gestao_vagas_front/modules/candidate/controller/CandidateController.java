@@ -24,6 +24,7 @@ import com.example.gestao_vagas_front.modules.candidate.service.CandidateService
 import com.example.gestao_vagas_front.modules.candidate.service.CreateCandidateService;
 import com.example.gestao_vagas_front.modules.candidate.service.FindJobsService;
 import com.example.gestao_vagas_front.modules.candidate.service.ProfileCandidateService;
+import com.example.gestao_vagas_front.utils.FormatErrorMessage;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -124,7 +125,7 @@ public class CandidateController {
         try {
             this.createCandidateService.execute(candidate);
         } catch (HttpClientErrorException ex) {
-            model.addAttribute("error_message", ex.getMessage());
+            model.addAttribute("error_message", FormatErrorMessage.formatErrorMessage(ex.getResponseBodyAsString()));
         }
 
         model.addAttribute("candidate", candidate);
