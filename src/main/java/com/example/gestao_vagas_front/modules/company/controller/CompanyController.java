@@ -20,6 +20,7 @@ import com.example.gestao_vagas_front.modules.company.dto.CreateJobsDTO;
 import com.example.gestao_vagas_front.modules.company.service.CompanyService;
 import com.example.gestao_vagas_front.modules.company.service.CreateCompanyService;
 import com.example.gestao_vagas_front.modules.company.service.CreateJobService;
+import com.example.gestao_vagas_front.modules.company.service.ListAllJobsCompanyService;
 import com.example.gestao_vagas_front.utils.FormatErrorMessage;
 
 import jakarta.servlet.http.HttpSession;
@@ -37,6 +38,9 @@ public class CompanyController {
     @Autowired
     private CreateJobService createJobService;
     
+    @Autowired
+    private ListAllJobsCompanyService listAllJobsCompanyService;
+
     @GetMapping("/create")
     public String create(Model model) {
         model.addAttribute("company", new CreateCompanyDTO());
@@ -100,6 +104,8 @@ public class CompanyController {
     @GetMapping("/jobs/list")
     @PreAuthorize("hasRole('COMPANY')")
     public String list(Model model) {
+        var result = this.listAllJobsCompanyService.execute(getToken());
+        model.addAttribute("jobs", result);
         return "company/list";
     }
 
