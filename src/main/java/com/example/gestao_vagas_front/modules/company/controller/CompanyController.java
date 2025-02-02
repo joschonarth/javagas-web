@@ -98,7 +98,7 @@ public class CompanyController {
     public String createJobs(CreateJobsDTO jobs) {
         var result = this.createJobService.execute(jobs, getToken());
         System.err.println(result);
-        return "redirect:/company/jobs";
+        return "redirect:/company/jobs/list";
     }
 
     @GetMapping("/jobs/list")

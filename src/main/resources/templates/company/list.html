@@ -33,11 +33,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="border px-4 py-2">123456</td>
-                        <td class="border px-4 py-2">Vaga para programador Java</td>
-                        <td class="border px-4 py-2">Gympass</td>
-                        <td class="border px-4 py-2">Junior</td>
+                    <tr th:each="job: ${jobs}">
+                        <td class="border px-4 py-2" th:text="${job.id}"></td>
+                        <td class="border px-4 py-2" th:text="${job.description}"></td>
+                        <td class="border px-4 py-2" th:text="${job.benefits}"></td>
+                        <td class="border px-4 py-2" th:text="${job.level}"></td>
                     </tr>
                 </tbody>
             </table>
