@@ -1,43 +1,46 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" >
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Perfil do Candidato</title>
 </head>
-<body class="bg-gray-900 h-full m-0 p-0">
-    <nav class="bg-gray-800">
-        <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-            <div class="relative flex h-16 items-center justify-start text-white">
-                <div class="space-x-4">
-                    <a href="/candidate/profile" class="bg-gray-900 rounded-md px-3 py-2">Perfil</a>
-                    <a href="/candidate/jobs">Vagas</a>
+<body class="bg-gray-900 text-gray-100">
+
+    <nav class="bg-gray-800 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex space-x-6">
+                    <a href="/candidate/profile" class="px-4 py-2 rounded-md bg-gray-700 hover:bg-gray-600 transition">Perfil</a>
+                    <a href="/candidate/jobs" class="px-4 py-2 rounded-md hover:bg-gray-700 transition">Vagas</a>
                 </div>
             </div>
         </div>
     </nav>
-    
-    <div class="container mx-auto mt-8">
-        <div class="bg-gray-800 p-8 rounded-lg shadow-md">
 
-            <h1 class="text-2xl font-bold text-gray-100 text-center mb-8" th:text="${user.name}"></h1>
-
-            <form th:object="${user}">
-                <div class="text-center mb-4">
-                    <p class="text-gray-400">
-                        <span class="font-bold">Usuário: </span> <span th:text="${user.username}"></span>
-                    </p>
-                    <p class="text-gray-400">
-                        <span class="font-bold">Email: </span> <span th:text="${user.email}"></span>
-                    </p>
-                    <p class="text-gray-400">
-                        <span class="font-bold">Descrição: </span> <span th:text="${user.description}"></span>
-                    </p>
+    <div class="flex items-center justify-center min-h-screen p-4">
+        <div class="bg-gray-800 p-8 rounded-xl shadow-lg w-full max-w-md">
+            
+            <div class="flex flex-col items-center mb-6">
+                <div class="w-24 h-24 rounded-full bg-gray-700 flex items-center justify-center text-3xl font-bold text-gray-300">
+                    <span th:text="${user.name.substring(0,1)}"></span>
                 </div>
-            </form>
+                <h1 class="text-2xl font-semibold mt-4" th:text="${user.name}"></h1>
+            </div>
+
+            <div class="space-y-4 text-gray-300">
+                <p><span class="font-bold">Usuário:</span> <span th:text="${user.username}"></span></p>
+                <p><span class="font-bold">Email:</span> <span th:text="${user.email}"></span></p>
+                <p><span class="font-bold">Descrição:</span> <span th:text="${user.description}"></span></p>
+            </div>
+
+            <div class="mt-6 flex justify-center">
+                <a href="/candidate/edit" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg shadow-md transition">Editar Perfil</a>
+            </div>
 
         </div>
     </div>
+
 </body>
 </html>
