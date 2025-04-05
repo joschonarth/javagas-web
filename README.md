@@ -6,7 +6,7 @@ A interface web do **Javagas**, uma plataforma completa de gestão de vagas de e
   <img src="./assets/candidate-login.png" alt="Visualização de Vagas" width="90%">
 </p>
 
-> 🔗 Este repositório representa a **camada de apresentação (front-end)** da aplicação Javagas. Para acessar o back-end, [clique aqui](https://github.com/joschonarth/javagas-api).
+> 🔗 Este repositório representa a **camada de apresentação (front-end)** da aplicação Javagas. Para acessar o back-end, [clique aqui](https://github.com/joschonarth/javagas-server).
 
 ## 🛠️ Tecnologias Utilizadas
 
