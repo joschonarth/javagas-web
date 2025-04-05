@@ -1,48 +1,65 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" >
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Vagas Disponíveis</title>
 </head>
-<body class="bg-gray-900 h-full m-0 p-0">
-    <nav class="bg-gray-800">
-        <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-            <div class="relative flex h-16 items-center justify-start text-white">
-                <div class="space-x-4">
-                    <a href="/candidate/profile">Perfil</a>
-                    <a href="/candidate/jobs" class="bg-gray-900 rounded-md px-3 py-2">Vagas</a>
+<body class="bg-gray-900 text-gray-100">
+
+    <nav class="bg-gray-800 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex space-x-6">
+                    <a href="/candidate/profile" class="px-4 py-2 rounded-md hover:bg-gray-700 transition">Perfil</a>
+                    <a href="/candidate/jobs" class="px-4 py-2 rounded-md bg-gray-700">Vagas</a>
                 </div>
             </div>
         </div>
     </nav>
-    
-    <div class="container mx-auto mt-24 text-center">
-        <form>
+
+    <div class="max-w-4xl mx-auto mt-12 p-4">
+
+        <form th:action="@{/candidate/jobs}" method="GET" class="flex justify-center mb-6">
             <input 
                 type="text" 
                 name="filter" 
-                placeholder="Pesquisar vagas"
-                class="bg-gray-50 text-gray-500 rounded w-96 p-3 focus:outline-none"
+                placeholder="Pesquisar vagas..."
+                class="bg-gray-800 text-gray-300 w-full max-w-md p-3 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                th:value="${param.filter}"
             >
-            <button class="bg-green-600 hover:bg-green-500 text-white w-24 p-3 ml-2 rounded">Buscar</button>
+            <button type="submit" class="bg-blue-600 hover:bg-blue-500 text-white px-6 py-3 rounded-r-md">
+                Buscar
+            </button>
         </form>
-        
-        <div class="max-w-md mx-auto mt-10">
 
-            <form th:action="@{/candidate/jobs/apply}" method="post">
-                <div th:each="job: ${jobs}" class="text-white bg-gray-800 rounded-lg p-4 mb-4 shadow-md text-justify">
+        <form th:action="@{/candidate/jobs/apply}" method="post" class="space-y-8">
+            <div th:if="${jobs != null and !jobs.isEmpty()}">
+                <div th:each="job : ${jobs}" class="bg-gray-800 rounded-lg shadow-lg p-6 mb-8">
                     <input type="hidden" name="jobId" th:value="${job.id}">
-                    <h3 th:text="${job.description}" class="font-bold"></h3>
-                    <span th:text="${job.level}" class="block"></span>
-                    <span class="mt-4 block font-bold">Benefícios</span>
-                    <span th:text="${job.benefits}" class="block"></span>
-                    <button class="bg-gray-500 hover:bg-gray-400 text-white fond-bold py-2 px-4 rounded mt-4">Aplicar</button>
-                </div>
-            </form>
-        </div>
+                    
+                    <h3 th:text="${job.description}" class="text-xl font-semibold text-blue-400"></h3>
+                    <p class="text-gray-400 text-sm mt-2" th:text="${job.level}"></p>
         
+                    <div class="mt-4">
+                        <span class="font-bold text-gray-300">Benefícios:</span>
+                        <p class="text-gray-400 text-sm" th:text="${job.benefits}"></p>
+                    </div>
+        
+                    <div class="mt-6 flex justify-end">
+                        <button class="bg-green-600 hover:bg-green-500 text-white font-semibold py-2 px-5 rounded-md shadow-md transition">
+                            Aplicar
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <p th:if="${jobs == null or jobs.isEmpty()}" class="text-center text-gray-400 mt-6">
+                Nenhuma vaga encontrada.
+            </p>
+        </form>
+
     </div>
+
 </body>
 </html>
